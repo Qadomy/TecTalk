@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1064072231966",
+    "firebase_url": "https://tec-talk-9f95c.firebaseio.com",
+    "project_id": "tec-talk-9f95c",
+    "storage_bucket": "tec-talk-9f95c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064072231966:android:ce3bdb0d3600e5011dc20f",
+        "android_client_info": {
+          "package_name": "com.qadomy.tectalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064072231966-lmdda79ia22s46r9d8ihjonqcv9g2p8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvopje0W6ouUlXl2ADgfhkD8G9p-wVGis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064072231966-lmdda79ia22s46r9d8ihjonqcv9g2p8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
