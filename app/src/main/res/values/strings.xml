@@ -3,4 +3,21 @@
     <string name="next">Next</string>
     <string name="get_started">Get Started</string>
     <string name="skip">Skip</string>
+    <string name="chats">Chats</string>
+    <string name="groups">Groups</string>
+    <string name="ar_selfie">AR selfie</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="enter_email">Enter Email..</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="login_with_google">LOGIN WITH GOOGLE</string>
+    <string name="new_user">NEW USER?</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="register">REGISTER</string>
+    <string name="register_with_google">Register With GOOGLE</string>
+    <string name="wrong_email_format">Wrong email format</string>
+    <string name="password_size">Password must be at least 6 characters</string>
 </resources>

@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.qadomy.tectalk.adapter.IntroViewPagerAdapter
 import com.qadomy.tectalk.model.ScreenItem
+import com.qadomy.tectalk.ui.main_avtivity.MainActivity
 import kotlinx.android.synthetic.main.activity_walk_through.*
 import java.util.*
 
@@ -25,7 +25,6 @@ class WalkThroughActivity : AppCompatActivity() {
 
         // when this activity is about to be launch we need to check if its opened before or not
         if (restorePrefData()) {
-            Toast.makeText(baseContext, "To Main Activity", Toast.LENGTH_SHORT).show()
             startActivity(Intent(applicationContext, MainActivity::class.java))
             finish()
         }
