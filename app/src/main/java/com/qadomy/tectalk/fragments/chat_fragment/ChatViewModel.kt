@@ -2,6 +2,6 @@ package com.qadomy.tectalk.fragments.chat_fragment
 
 import androidx.lifecycle.ViewModel
 
-class ChatViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class ChatViewModel(val senderId: String?, val receiverId: String) : ViewModel() {
+
 }

@@ -33,5 +33,10 @@
     <string name="you_sent_record">you sent a voice record</string>
     <string name="your_requests">Your Requests</string>
     <string name="logout">Logout</string>
+    <string name="close">Close</string>
+    <string name="send_picture">Send Picture</string>
+    <string name="send_file">Send file</string>
+    <string name="attachments">attachments</string>
+    <string name="type_a_message">Type a message</string>
 
 </resources>

@@ -222,6 +222,7 @@ class HomeFragment : Fragment() {
         FirebaseAuth.getInstance().signOut()
         findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
 
+        // TODO: 8/11/20 prevent to back to home after logout
     }
 
     // remove token from firestore database in firebase
