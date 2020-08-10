@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.chat_fragment.ChatFragment">
+    tools:context=".fragments.contacts.ContactsFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Chat Fragment"
-        android:textSize="100sp" />
+        android:text="Hello" />
 
 </FrameLayout>

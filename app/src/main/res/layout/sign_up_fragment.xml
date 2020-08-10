@@ -217,6 +217,7 @@
 
             <!--for showing if there any issue-->
             <include
+                android:closeIssueLayout="@{true}"
                 android:id="@+id/issueLayout"
                 layout="@layout/issue_layout"
                 android:visibility="gone" />

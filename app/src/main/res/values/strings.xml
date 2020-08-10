@@ -21,4 +21,17 @@
     <string name="wrong_email_format">Wrong email format</string>
     <string name="password_size">Password must be at least 6 characters</string>
     <string name="signup_successfully">Sign up successful</string>
+    <string name="no_one_to_chat_with_yet_add_more_friend_to_get_going">No chat history yet!! Search friends and get going!!</string>
+
+    <string name="you">You: %1$s</string>
+    <string name="you_sent_image">You sent an image</string>
+    <string name="other">%1$s: %2$s</string>
+    <string name="other_image">%1$s sent an image</string>
+    <string name="other_file">%1$s sent a file</string>
+    <string name="you_sent_file">you sent a file</string>
+    <string name="other_record">%1$s sent a voice record</string>
+    <string name="you_sent_record">you sent a voice record</string>
+    <string name="your_requests">Your Requests</string>
+    <string name="logout">Logout</string>
+
 </resources>

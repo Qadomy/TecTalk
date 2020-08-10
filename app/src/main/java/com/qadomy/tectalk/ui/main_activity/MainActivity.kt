@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.ui.main_avtivity
+package com.qadomy.tectalk.ui.main_activity
 
 import android.content.Context
 import android.os.Bundle
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         hideToolbarInLoginAndSignup()
 
         //setup toolbar with navigation
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.chatFragment, R.id.loginFragment))
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.loginFragment))
         findViewById<Toolbar>(R.id.toolbar)
             .setupWithNavController(navController, appBarConfiguration)
 
@@ -115,15 +115,13 @@ class MainActivity : AppCompatActivity() {
         BottomNavigationView.OnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.chatFragment -> {
-                    d(TAG, "chat fragment clicked")
                     val navOptions = NavOptions.Builder().setPopUpTo(R.id.nav_graph, true).build()
-                    if (isValidDestination(R.id.chatFragment)) {
+                    if (isValidDestination(R.id.homeFragment)) {
                         Navigation.findNavController(this, R.id.nav_host_fragment)
-                            .navigate(R.id.chatFragment, null, navOptions)
+                            .navigate(R.id.homeFragment, null, navOptions)
                     }
                 }
                 R.id.groupFragment -> {
-                    d(TAG, "group fragment clicked")
                     if (isValidDestination(R.id.groupFragment)) {
                         Navigation.findNavController(this, R.id.nav_host_fragment)
                             .navigate(R.id.groupFragment)

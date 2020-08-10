@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.ui.main_avtivity
+package com.qadomy.tectalk.ui.main_activity
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

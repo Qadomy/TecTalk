@@ -8,11 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -28,19 +26,22 @@ import org.greenrobot.eventbus.EventBus
 
 class LoginFragment : Fragment() {
 
-    private lateinit var binding: LoginFragmentBinding
+    private var _binding: LoginFragmentBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
+        // data binding
+        _binding = LoginFragmentBinding.inflate(inflater, container, false)
 
         try {
             //check if user has previously logged in
             if (AuthUtil.firebaseAuthInstance.currentUser != null) {
-                findNavController().navigate(R.id.action_loginFragment_to_chatFragment)
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             }
         } catch (e: Exception) {
             Log.d(TAG, "onCreateView: ${e.message}")
@@ -57,11 +58,6 @@ class LoginFragment : Fragment() {
         // hide BottomNavigationView when we in Login fragment
         activity?.navView?.visibility = View.GONE
 
-
-        // Navigate to signup fragment
-        binding.gotoSignUpFragmentTextView.setOnClickListener {
-            it.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
-        }
 
         //Report text change to viewModel and Observe if email format is correct
         binding.emailEditText.afterTextChanged { email ->
@@ -95,12 +91,6 @@ class LoginFragment : Fragment() {
         }
 
 
-        // hide issue layout on x icon click
-        binding.issueLayout.cancelImage.setOnClickListener {
-            binding.issueLayout.visibility = View.GONE
-        }
-
-
         //login on keyboard done click when focus is on passwordEditText
         binding.passwordEditText.setOnEditorActionListener { _, _, _ ->
             login()
@@ -112,6 +102,7 @@ class LoginFragment : Fragment() {
     // login
     private fun login() {
         EventBus.getDefault().post(KeyboardEvent())
+
         if (binding.email.error != null ||
             binding.password.error != null ||
             binding.email.editText!!.text.isEmpty() ||
@@ -136,7 +127,7 @@ class LoginFragment : Fragment() {
                 when (it) {
                     LoadState.SUCCESS -> {   //triggered when login with email and password is successful
                         this@LoginFragment.findNavController()
-                            .navigate(R.id.action_loginFragment_to_chatFragment)
+                            .navigate(R.id.action_loginFragment_to_homeFragment)
                         Toast.makeText(context, "Login successful", Toast.LENGTH_LONG).show()
                         viewModel.doneNavigating()
                     }

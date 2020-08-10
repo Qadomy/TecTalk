@@ -11,11 +11,11 @@
         android:label="@string/login"
         tools:layout="@layout/login_fragment">
         <action
-            android:id="@+id/action_loginFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
-        <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/ARselfieFragment"
@@ -23,10 +23,17 @@
         android:label="a_rselfie_fragment"
         tools:layout="@layout/a_rselfie_fragment" />
     <fragment
-        android:id="@+id/chatFragment"
-        android:name="com.qadomy.tectalk.fragments.chat_fragment.ChatFragment"
-        android:label="chat_fragment"
-        tools:layout="@layout/chat_fragment" />
+        android:id="@+id/homeFragment"
+        android:name="com.qadomy.tectalk.fragments.home_fragment.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.qadomy.tectalk.fragments.profile.ProfileFragment"
@@ -48,7 +55,17 @@
         android:label="@string/sign_up"
         tools:layout="@layout/sign_up_fragment">
         <action
-            android:id="@+id/action_signUpFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
+            android:id="@+id/action_signUpFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.qadomy.tectalk.fragments.chat_fragment.ChatFragment"
+        android:label="chat_fragment"
+        tools:layout="@layout/chat_fragment" />
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.qadomy.tectalk.fragments.contacts.ContactsFragment"
+        android:label="contacts_fragment"
+        tools:layout="@layout/contacts_fragment" />
 </navigation>

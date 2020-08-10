@@ -55,11 +55,6 @@ class SignUpFragment : Fragment() {
             signUp()
         }
 
-        //hide issue layout on x icon click
-        binding.issueLayout.cancelImage.setOnClickListener {
-            binding.issueLayout.visibility = View.GONE
-        }
-
         //show proper loading/error ui
         viewModel.loadingState.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -138,7 +133,7 @@ class SignUpFragment : Fragment() {
             Observer { navigateToHome ->
                 if (navigateToHome != null && navigateToHome) {
                     this@SignUpFragment.findNavController()
-                        .navigate(R.id.action_signUpFragment_to_chatFragment)
+                        .navigate(R.id.action_signUpFragment_to_homeFragment)
                     Snackbar.make(
                         requireView(),
                         getString(R.string.signup_successfully),

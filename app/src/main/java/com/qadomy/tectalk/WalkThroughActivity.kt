@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 import com.qadomy.tectalk.adapter.IntroViewPagerAdapter
 import com.qadomy.tectalk.model.ScreenItem
-import com.qadomy.tectalk.ui.main_avtivity.MainActivity
+import com.qadomy.tectalk.ui.main_activity.MainActivity
 import kotlinx.android.synthetic.main.activity_walk_through.*
 import java.util.*
 
