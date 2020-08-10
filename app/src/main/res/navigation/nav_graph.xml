@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_homeFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

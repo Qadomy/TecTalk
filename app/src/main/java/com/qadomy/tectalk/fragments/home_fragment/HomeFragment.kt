@@ -3,6 +3,7 @@ package com.qadomy.tectalk.fragments.home_fragment
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.qadomy.tectalk.R
 import com.qadomy.tectalk.databinding.HomeFragmentBinding
@@ -18,8 +20,11 @@ import com.qadomy.tectalk.model.ChatParticipant
 import com.qadomy.tectalk.model.User
 import com.qadomy.tectalk.services.MyFirebaseMessagingService
 import com.qadomy.tectalk.ui.main_activity.SharedViewModel
+import com.qadomy.tectalk.utils.AuthUtil
 import com.qadomy.tectalk.utils.Common.CLICKED_USER
+import com.qadomy.tectalk.utils.FireStoreUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.min
 
 class HomeFragment : Fragment() {
 
@@ -161,7 +166,7 @@ class HomeFragment : Fragment() {
         val menuItem = menu.findItem(R.id.action_incoming_requests)
         val actionView = menuItem?.actionView
         countBadgeTextView = actionView?.findViewById<View>(R.id.count_badge) as TextView
-        //if fragment is coming from back stack setupBadge will be called before onCreateOptionsMenu so we have to call setupbadge again
+        //if fragment is coming from back stack setupBadge will be called before onCreateOptionsMenu so we have to call setup badge again
         setupBadge(receivedRequestsCount)
 
 
@@ -210,12 +215,37 @@ class HomeFragment : Fragment() {
 
     }
 
+
+    // function for logout from firebase auth
     private fun logout() {
+        removeUserToken()
+        FirebaseAuth.getInstance().signOut()
+        findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
 
     }
 
-    private fun setupBadge(receivedRequestsCount: Int?) {
+    // remove token from firestore database in firebase
+    private fun removeUserToken() {
+        val loggedUserID = AuthUtil.firebaseAuthInstance.currentUser?.uid
+        if (loggedUserID != null) {
+            FireStoreUtil.firestoreInstance.collection("users").document(loggedUserID)
+                .update("token", null)
+        }
+    }
 
+
+    // for set number in notification of request friends
+    private fun setupBadge(count: Int?) {
+        Log.d(TAG, "setupBadge: ")
+        if (::countBadgeTextView.isInitialized) {
+            if (null == count || count == 0) {
+                countBadgeTextView.visibility = View.GONE
+            } else {
+                countBadgeTextView.visibility = View.VISIBLE
+                countBadgeTextView.text =
+                    min(count, 99).toString()
+            }
+        }
     }
     // endregion menu
 
