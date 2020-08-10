@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_incomingRequestsFragment"
+            app:destination="@id/incomingRequestsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -71,4 +74,9 @@
         android:name="com.qadomy.tectalk.fragments.contacts.ContactsFragment"
         android:label="contacts_fragment"
         tools:layout="@layout/contacts_fragment" />
+    <fragment
+        android:id="@+id/incomingRequestsFragment"
+        android:name="com.qadomy.tectalk.fragments.incoming_requests.IncomingRequestsFragment"
+        android:label="incoming_requests_fragment"
+        tools:layout="@layout/incoming_requests_fragment" />
 </navigation>

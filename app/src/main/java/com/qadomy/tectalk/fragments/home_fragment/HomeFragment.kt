@@ -203,7 +203,7 @@ class HomeFragment : Fragment() {
             true
         }
         R.id.action_incoming_requests -> {
-//            findNavController().navigate(R.id.action_homeFragment_to_incomingRequestsFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_incomingRequestsFragment)
             true
         }
 
@@ -232,7 +232,6 @@ class HomeFragment : Fragment() {
                 .update("token", null)
         }
     }
-
 
     // for set number in notification of request friends
     private fun setupBadge(count: Int?) {
