@@ -242,6 +242,7 @@ class HomeFragment : Fragment() {
                 countBadgeTextView.visibility = View.GONE
             } else {
                 countBadgeTextView.visibility = View.VISIBLE
+                // make maximum number of badge 99 if there more 99 friend request
                 countBadgeTextView.text =
                     min(count, 99).toString()
             }
