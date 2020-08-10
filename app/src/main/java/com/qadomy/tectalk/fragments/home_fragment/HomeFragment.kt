@@ -16,6 +16,7 @@ import com.qadomy.tectalk.R
 import com.qadomy.tectalk.databinding.HomeFragmentBinding
 import com.qadomy.tectalk.model.ChatParticipant
 import com.qadomy.tectalk.model.User
+import com.qadomy.tectalk.services.MyFirebaseMessagingService
 import com.qadomy.tectalk.ui.main_activity.SharedViewModel
 import com.qadomy.tectalk.utils.Common.CLICKED_USER
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +34,7 @@ class HomeFragment : Fragment() {
     private lateinit var countBadgeTextView: TextView
     private val gson = Gson()
 
+    // ChatPreviewAdapter
     private val adapter: ChatPreviewAdapter by lazy {
         ChatPreviewAdapter(ClickListener { chatParticipant ->
             //navigate to chat with selected user on chat outer item click
@@ -72,7 +74,7 @@ class HomeFragment : Fragment() {
 
 
         //get logged user token and add it to user document (for FCM)
-//        MyFirebaseMessagingService.getInstanceId()
+        MyFirebaseMessagingService.getInstanceId()
 
         //theses intent extras are coming from FCM notification click so we need to move to specific chat if not null
         intentExtrasFromFCM()
