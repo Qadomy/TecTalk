@@ -95,7 +95,7 @@ class LoginFragment : Fragment() {
         }
 
 
-        //hide issue layout on x icon click
+        // hide issue layout on x icon click
         binding.issueLayout.cancelImage.setOnClickListener {
             binding.issueLayout.visibility = View.GONE
         }
@@ -152,7 +152,7 @@ class LoginFragment : Fragment() {
                         binding.issueLayout.textViewIssue.text = ErrorMessage.errorMessage
                     }
                     else -> {
-                        Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+
                     }
                 }
             })

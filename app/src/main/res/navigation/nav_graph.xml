@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.qadomy.tectalk.fragments.login.LoginFragment"
-        android:label="login_fragment"
+        android:label="@string/login"
         tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_loginFragment_to_chatFragment"
@@ -17,11 +17,6 @@
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.qadomy.tectalk.fragments.home.HomeFragment"
-        android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
     <fragment
         android:id="@+id/ARselfieFragment"
         android:name="com.qadomy.tectalk.fragments.ar_selfie_fragment.ARselfieFragment"
@@ -50,5 +45,10 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.qadomy.tectalk.fragments.register.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="@string/sign_up"
+        tools:layout="@layout/sign_up_fragment">
+        <action
+            android:id="@+id/action_signUpFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
 </navigation>

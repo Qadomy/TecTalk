@@ -20,4 +20,5 @@
     <string name="register_with_google">Register With GOOGLE</string>
     <string name="wrong_email_format">Wrong email format</string>
     <string name="password_size">Password must be at least 6 characters</string>
+    <string name="signup_successfully">Sign up successful</string>
 </resources>

@@ -114,7 +114,7 @@ class WalkThroughActivity : AppCompatActivity() {
         }
 
 
-        // TODO: 8/9/20 tabIndicator not showing
+        // TODO: 8/9/20 tabIndicator not displayed
         // tab-layout add change listener
         tabIndicator.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -137,7 +137,6 @@ class WalkThroughActivity : AppCompatActivity() {
             savePrefsData()
             finish()
         }
-
 
         // skip button click listener
         tv_skip.setOnClickListener {

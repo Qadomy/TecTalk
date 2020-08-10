@@ -1,34 +1,52 @@
 package com.qadomy.tectalk.ui.main_avtivity
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log.d
 import android.util.Log.w
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import com.google.firebase.firestore.DocumentReference
 import com.qadomy.tectalk.R
 import com.qadomy.tectalk.databinding.ActivityMainBinding
 import com.qadomy.tectalk.utils.AuthUtil
 import com.qadomy.tectalk.utils.FireStoreUtil
+import com.qadomy.tectalk.utils.event_buses.ConnectionChangeEvent
+import com.qadomy.tectalk.utils.event_buses.KeyboardEvent
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
     private var userDocRef: DocumentReference? = AuthUtil.getAuthId().let {
         FireStoreUtil.firestoreInstance.collection("users").document(it)
     }
 
-    //    private val sharedViewModel: SharedViewModel by viewModels()
+    private var isActivityRecreated = false
+
+    private lateinit var sharedViewModel: SharedViewModel
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+
+
+    // onDestroy, unregister EventBus
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
 
     // onCreate
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +59,8 @@ class MainActivity : AppCompatActivity() {
             db.collection("users").document(AuthUtil.getAuthId()).update("status", true)
 
             // check database, store time in database and update status to online
-
             checkDatabaseFirebase()
+
         } catch (e: Exception) {
             d(TAG, "onCreate: ${e.message}")
         }
@@ -50,20 +68,21 @@ class MainActivity : AppCompatActivity() {
         // set data binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-
-        // todo: maybe error here
-//        sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+        // init shared view model
+        sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
 
 
         // setSupportActionBar
         setSupportActionBar(binding.toolbar)
 
+        //register to event bus to receive callbacks
+        EventBus.getDefault().register(this)
 
         // hide toolbar on sign's up, login fragments
-        hideToolbar()
+        hideToolbarInLoginAndSignup()
 
         //setup toolbar with navigation
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.loginFragment))
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.chatFragment, R.id.loginFragment))
         findViewById<Toolbar>(R.id.toolbar)
             .setupWithNavController(navController, appBarConfiguration)
 
@@ -71,6 +90,26 @@ class MainActivity : AppCompatActivity() {
 
     } // end onCreate
 
+    // Show snackBar whenever the connection state changes
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    open fun onConnectionChangeEvent(event: ConnectionChangeEvent): Unit {
+        if (!isActivityRecreated) {//to not show toast on configuration changes
+            Snackbar.make(binding.coordinator, event.message, Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onKeyboardEvent(event: KeyboardEvent) {
+        hideKeyboard()
+    }
+
+    // hide keyboard
+    private fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.hideSoftInputFromWindow(binding.toolbar.windowToken, 0)
+
+    }
 
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener {
@@ -119,12 +158,11 @@ class MainActivity : AppCompatActivity() {
             .currentDestination!!.id
     }
 
-
     /** hide toolbar on sign's up, login fragments */
-    private fun hideToolbar() {
+    private fun hideToolbarInLoginAndSignup() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.label == "SignupFragment" || destination.label == "LoginFragment") {
+            if (destination.label == getString(R.string.sign_up) || destination.label == getString(R.string.login)) {
                 binding.toolbar.visibility = View.GONE
             } else {
                 binding.toolbar.visibility = View.VISIBLE
@@ -132,6 +170,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // set last online, and current status to database firebase
     private fun checkDatabaseFirebase() {
         // firebase database
         val database = FirebaseDatabase.getInstance()
