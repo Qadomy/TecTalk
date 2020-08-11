@@ -15,6 +15,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.qadomy.tectalk.R
+import com.qadomy.tectalk.adapter.ChatPreviewAdapter
+import com.qadomy.tectalk.adapter.ClickListener
 import com.qadomy.tectalk.databinding.HomeFragmentBinding
 import com.qadomy.tectalk.model.ChatParticipant
 import com.qadomy.tectalk.model.User

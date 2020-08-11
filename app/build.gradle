@@ -47,11 +47,15 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // data binding compiler
+    kapt "com.android.databinding:compiler:3.1.4"
 
     // fragment navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
 
     // lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
@@ -75,12 +79,8 @@ dependencies {
     // material design
     implementation 'com.google.android.material:material:1.2.0'
 
-    // data binding compiler
-    kapt "com.android.databinding:compiler:3.1.4"
-
     //event bus
     implementation 'org.greenrobot:eventbus:3.1.1'
-
 
     //lottie animation
     implementation 'com.airbnb.android:lottie:3.4.0'
@@ -90,5 +90,8 @@ dependencies {
 
     // Glide
     implementation "com.github.bumptech.glide:glide:4.11.0"
+
+    //dexter
+    implementation 'com.karumi:dexter:6.0.1'
 
 }

@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.fragments.home_fragment
+package com.qadomy.tectalk.adapter
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -21,7 +21,9 @@ import java.util.*
 var mQuery = ""
 
 class ChatPreviewAdapter(private val clickListener: ClickListener) :
-    ListAdapter<ChatParticipant, ChatPreviewAdapter.ViewHolder>(DiffCallbackUsers())
+    ListAdapter<ChatParticipant, ChatPreviewAdapter.ViewHolder>(
+        DiffCallbackUsers()
+    )
     , Filterable, OnQueryTextChange {
 
     var chatList = listOf<ChatParticipant>()
@@ -74,14 +76,18 @@ class ChatPreviewAdapter(private val clickListener: ClickListener) :
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemChatOneToOneBinding.inflate(layoutInflater, parent, false)
 
-                return ViewHolder(binding)
+                return ViewHolder(
+                    binding
+                )
             }
         }
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+        return ViewHolder.from(
+            parent
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

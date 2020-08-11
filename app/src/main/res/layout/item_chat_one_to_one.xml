@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.qadomy.tectalk.fragments.home_fragment.ClickListener" />
+            type="com.qadomy.tectalk.adapter.ClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
