@@ -55,7 +55,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // set action bar title name Contacts
+        // set action bar title name Profile
         activity?.title = getString(R.string.my_profile)
 
 

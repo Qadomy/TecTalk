@@ -97,7 +97,11 @@
         android:id="@+id/findUserFragment"
         android:name="com.qadomy.tectalk.fragments.find_user.FindUserFragment"
         android:label="find_user_fragment"
-        tools:layout="@layout/find_user_fragment" />
+        tools:layout="@layout/find_user_fragment">
+        <action
+            android:id="@+id/action_findUserFragment_to_differentUserProfileFragment"
+            app:destination="@id/differentUserProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/differentUserProfileFragment"
         android:name="com.qadomy.tectalk.fragments.different_user_profile.DifferentUserProfileFragment"

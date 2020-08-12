@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.adapter
+package com.qadomy.tectalk.fragments.home_fragment
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -6,7 +6,6 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -20,25 +19,35 @@ import java.util.*
 
 var mQuery = ""
 
+
 class ChatPreviewAdapter(private val clickListener: ClickListener) :
-    ListAdapter<ChatParticipant, ChatPreviewAdapter.ViewHolder>(
-        DiffCallbackUsers()
-    )
+    ListAdapter<ChatParticipant, ChatPreviewAdapter.ViewHolder>(DiffCallbackUsers())
     , Filterable, OnQueryTextChange {
+
 
     var chatList = listOf<ChatParticipant>()
     var filteredChatList = mutableListOf<ChatParticipant>()
 
-    class ViewHolder private constructor(private val binding: ItemChatOneToOneBinding) :
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+
+        holder.bind(clickListener, item)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
+    }
+
+    class ViewHolder private constructor(val binding: ItemChatOneToOneBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(clickListener: ClickListener, chatParticipant: ChatParticipant) {
-            Log.d(TAG, "bind: ViewHolder.bind:")
+            println("ViewHolder.bind:")
 
             binding.chatParticipant = chatParticipant
             binding.clickListener = clickListener
-
-            /** if query text isn't empty_box set the selected text with sky blue+bold */
+            //if query text isn't empty_box set the selected text with sky blue+bold
             val username = chatParticipant.participant?.username
             if (mQuery.isEmpty()) {
                 binding.nameTextView.text = username
@@ -69,35 +78,15 @@ class ChatPreviewAdapter(private val clickListener: ClickListener) :
         }
 
         companion object {
-            private const val TAG = "ChatPreviewAdapter"
-
             fun from(parent: ViewGroup): ViewHolder {
-                // inflate layout for set in recycle view
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemChatOneToOneBinding.inflate(layoutInflater, parent, false)
 
-                return ViewHolder(
-                    binding
-                )
+                return ViewHolder(binding)
             }
         }
     }
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(
-            parent
-        )
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(clickListener, item)
-    }
-
-    override fun onChange(query: String) {
-        mQuery = query
-    }
 
     override fun getFilter(): Filter {
         return object : Filter() {
@@ -106,6 +95,7 @@ class ChatPreviewAdapter(private val clickListener: ClickListener) :
                 filteredChatList = mutableListOf()
                 if (charString.isEmpty()) {
                     filteredChatList = chatList as MutableList<ChatParticipant>
+
 
                 } else {
                     for (chatParticipant in chatList) {
@@ -134,13 +124,19 @@ class ChatPreviewAdapter(private val clickListener: ClickListener) :
             }
         }
     }
-}
 
+    //get search text from fragment using callback
+    override fun onChange(query: String) {
+        mQuery = query
+    }
+
+
+}
 
 /**
  * Callback for calculating the diff between two non-null items in a list.
  *
- * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
+ * Used by ListAdapter to calculate the minumum number of changes between and old list and a new
  * list that's been passed to `submitList`.
  */
 class DiffCallbackUsers : DiffUtil.ItemCallback<ChatParticipant>() {
@@ -152,7 +148,6 @@ class DiffCallbackUsers : DiffUtil.ItemCallback<ChatParticipant>() {
         return oldItem == newItem
     }
 }
-
 
 class ClickListener(val clickListener: (chatParticipant: ChatParticipant) -> Unit) {
     fun onClick(chatParticipant: ChatParticipant) {

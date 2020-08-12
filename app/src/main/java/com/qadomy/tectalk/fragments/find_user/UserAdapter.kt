@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.adapter
+package com.qadomy.tectalk.fragments.find_user
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -6,7 +6,6 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -14,40 +13,47 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.qadomy.tectalk.databinding.ContactItemBinding
-import com.qadomy.tectalk.fragments.find_user.OnQueryTextChange
-import com.qadomy.tectalk.fragments.home_fragment.mQuery
+import com.qadomy.tectalk.databinding.UserItemBinding
 import com.qadomy.tectalk.model.User
 import java.util.*
 
-class ContactsAdapter(private val itemClickCallback: ItemClickCallback) :
-    ListAdapter<User, ContactsAdapter.UserHolder>(DiffCallbackContacts())
-    , Filterable,
+
+var mQuery = ""
+
+
+class UserAdapter(private val clickListener: UserClickListener) :
+    ListAdapter<User, UserAdapter.ViewHolder>(DiffCallbackUsers()), Filterable,
     OnQueryTextChange {
 
-    interface ItemClickCallback {
-        fun onItemClicked(user: User)
+
+    var userList = mutableListOf<User?>()
+    var filteredUserList = mutableListOf<User?>()
+
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+
+        holder.bind(clickListener, item)
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
+    }
 
-    private var filteredUserList = mutableListOf<User>()
-    var usersList = listOf<User>()
-
-
-    class UserHolder private constructor(val binding: ContactItemBinding) :
+    class ViewHolder private constructor(val binding: UserItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(
-            item: User,
-            itemClickCallback: ItemClickCallback
-        ) {
+        fun bind(clickListener: UserClickListener, item: User) {
+            println("ViewHolder.bind:")
+
+            val userName: String = item.username.toString()
 
             //if query text isn't empty_box set the selected text with sky blue+bold
             if (mQuery.isEmpty()) {
-                binding.nameTextView.text = item.username
+                binding.usernameTextView.text = userName
             } else {
-                var index = item.username!!.indexOf(mQuery, 0, true)
-                val sb = SpannableStringBuilder(item.username)
+                var index = userName.indexOf(mQuery, 0, true)
+                val sb = SpannableStringBuilder(userName)
                 while (index >= 0) {
                     val fcs = ForegroundColorSpan(Color.rgb(135, 206, 235))
                     sb.setSpan(
@@ -62,59 +68,38 @@ class ContactsAdapter(private val itemClickCallback: ItemClickCallback) :
                         index + mQuery.length,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
-                    index = item.username.indexOf(mQuery, index + 1)
+                    index = userName.indexOf(mQuery, index + 1)
                 }
-                binding.nameTextView.text = sb
+                binding.usernameTextView.text = sb
             }
-
+            binding.clickListener = clickListener
             binding.user = item
             binding.executePendingBindings()
-
-            //callback to parent fragment when button clicked
-            binding.parentLayout.setOnClickListener {
-                itemClickCallback.onItemClicked(item)
-            }
-
         }
 
         companion object {
-            fun from(parent: ViewGroup): UserHolder {
+            fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ContactItemBinding.inflate(layoutInflater, parent, false)
+                val binding = UserItemBinding.inflate(layoutInflater, parent, false)
 
-                return UserHolder(
-                    binding
-                )
+                return ViewHolder(binding)
             }
         }
-
-
     }
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
-        return UserHolder.from(
-            parent
-        )
-    }
-
-    override fun onBindViewHolder(holder: UserHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item, itemClickCallback)
-    }
 
     override fun getFilter(): Filter {
         return object : Filter() {
-            override fun performFiltering(charSequence: CharSequence?): FilterResults {
+            override fun performFiltering(charSequence: CharSequence): FilterResults {
                 val charString = charSequence.toString()
                 filteredUserList = mutableListOf()
                 if (charString.isEmpty()) {
-                    filteredUserList = usersList as MutableList<User>
+                    filteredUserList = userList
 
 
                 } else {
-                    for (user in usersList) {
-                        if (user.username?.toLowerCase(Locale.ENGLISH)?.contains(
+                    for (user in userList) {
+                        if (user?.username?.toLowerCase(Locale.ENGLISH)?.contains(
                                 charString.toLowerCase(Locale.ENGLISH)
                             )!!
                         ) {
@@ -127,29 +112,24 @@ class ContactsAdapter(private val itemClickCallback: ItemClickCallback) :
                 return filterResults
             }
 
-            override fun publishResults(p0: CharSequence?, filterResults: FilterResults?) {
-                try {
-                    // TODO: 8/12/20 there is error -> non null
-                    val mutableList = filterResults!!.values as MutableList<User>
-                    submitList(mutableList)
-                    notifyItemRangeChanged(0, mutableList.size)
-                } catch (e: Exception) {
-                    Log.e(TAG, "publishResults: ${e.message}")
-                }
+            override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
+
+                val mutableList = filterResults.values as MutableList<User?>
+                submitList(mutableList)
+                notifyItemRangeChanged(0, mutableList.size)
+                notifyItemChanged(0)
+
             }
         }
-
     }
 
-    companion object {
-        private const val TAG = "ContactsAdapter"
-    }
-
+    //get search text from fragment using callback
     override fun onChange(query: String) {
         mQuery = query
     }
-}
 
+
+}
 
 /**
  * Callback for calculating the diff between two non-null items in a list.
@@ -157,7 +137,7 @@ class ContactsAdapter(private val itemClickCallback: ItemClickCallback) :
  * Used by ListAdapter to calculate the minumum number of changes between and old list and a new
  * list that's been passed to `submitList`.
  */
-class DiffCallbackContacts : DiffUtil.ItemCallback<User>() {
+class DiffCallbackUsers : DiffUtil.ItemCallback<User>() {
     override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
         return oldItem.uid == newItem.uid
     }
@@ -165,4 +145,15 @@ class DiffCallbackContacts : DiffUtil.ItemCallback<User>() {
     override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
         return oldItem == newItem
     }
+}
+
+class UserClickListener(val clickListener: (user: User) -> Unit) {
+    fun onClick(user: User) {
+        return clickListener(user)
+    }
+}
+
+
+interface OnQueryTextChange {
+    fun onChange(query: String)
 }
