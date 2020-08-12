@@ -50,11 +50,14 @@ import com.qadomy.tectalk.utils.AuthUtil
 import com.qadomy.tectalk.utils.Common.CLICKED_USER
 import com.qadomy.tectalk.utils.Common.LOGGED_USER
 import com.qadomy.tectalk.utils.event_buses.PermissionEvent
+import com.qadomy.tectalk.utils.event_buses.UpdateRecycleItemEvent
 import com.stfalcon.imageviewer.StfalconImageViewer
 import com.stfalcon.imageviewer.loader.ImageLoader
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.attachment_layout.view.*
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.io.IOException
 import java.util.*
 
@@ -125,6 +128,20 @@ class ChatFragment : Fragment() {
         })
     }
 
+
+    /** onStart register EventBus */
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    /** onStop, unregister EventBus */
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    /** onCreateView */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -627,6 +644,12 @@ class ChatFragment : Fragment() {
     }
 
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onRecycleItemEvent(event: UpdateRecycleItemEvent) {
+        adapter.notifyItemChanged(event.adapterPosition)
+    }
+
+
     companion object {
         private const val TAG = "ChatFragment"
         fun newInstance() = ChatFragment()
@@ -634,6 +657,4 @@ class ChatFragment : Fragment() {
         const val SELECT_CHAT_IMAGE_REQUEST = 3
         const val CHOOSE_FILE_REQUEST = 4
     }
-
-
 }

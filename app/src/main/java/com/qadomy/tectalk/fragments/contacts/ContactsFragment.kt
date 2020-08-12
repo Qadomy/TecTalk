@@ -41,7 +41,7 @@ class ContactsFragment : Fragment() {
         setHasOptionsMenu(true)
 
         // set action bar title name Contacts
-        activity?.title = "Contacts"
+        activity?.title = getString(R.string.contacts)
 
         // data binding
         _binding = ContactsFragmentBinding.inflate(inflater, container, false)

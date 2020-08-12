@@ -44,7 +44,14 @@
         android:id="@+id/profileFragment"
         android:name="com.qadomy.tectalk.fragments.profile.ProfileFragment"
         android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment">
+        <action
+            android:id="@+id/action_profileFragment_to_differentUserProfileFragment"
+            app:destination="@id/differentUserProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_findUserFragment"
+            app:destination="@id/findUserFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.qadomy.tectalk.fragments.search.SearchFragment"
@@ -91,4 +98,9 @@
         android:name="com.qadomy.tectalk.fragments.find_user.FindUserFragment"
         android:label="find_user_fragment"
         tools:layout="@layout/find_user_fragment" />
+    <fragment
+        android:id="@+id/differentUserProfileFragment"
+        android:name="com.qadomy.tectalk.fragments.different_user_profile.DifferentUserProfileFragment"
+        android:label="different_user_profile_fragment"
+        tools:layout="@layout/different_user_profile_fragment" />
 </navigation>

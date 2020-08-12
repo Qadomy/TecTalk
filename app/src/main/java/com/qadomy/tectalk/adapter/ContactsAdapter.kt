@@ -6,6 +6,7 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -125,11 +126,21 @@ class ContactsAdapter(private val itemClickCallback: ItemClickCallback) :
             }
 
             override fun publishResults(p0: CharSequence?, filterResults: FilterResults?) {
-                val mutableList = filterResults!!.values as MutableList<User>
-                submitList(mutableList)
-                notifyItemRangeChanged(0, mutableList.size)
+                try {
+                    // TODO: 8/12/20 there is error -> non null
+                    val mutableList = filterResults!!.values as MutableList<User>
+                    submitList(mutableList)
+                    notifyItemRangeChanged(0, mutableList.size)
+                } catch (e: Exception) {
+                    Log.e(TAG, "publishResults: ${e.message}")
+                }
             }
         }
+
+    }
+
+    companion object {
+        private const val TAG = "ContactsAdapter"
     }
 
     override fun onChange(query: String) {

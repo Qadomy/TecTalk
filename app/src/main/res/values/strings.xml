@@ -41,6 +41,19 @@
 
     <string name="empty_message">Can\'t send empty message</string>
     <string name="find_friends">Find Friends</string>
+    <string name="select_profile_picture">Select Picture</string>
+    <string name="take_new_profile_picture">Take new picture</string>
+    <string name="uploading">uploading..</string>
+    <string name="edit_profile">edit profile</string>
+    <string name="about_me">About me</string>
+    <string name="edit">Edit</string>
+    <string name="type_something_to_let_your_friends_know_you_better">Type something to let your friends know you better</string>
+    <string name="hi_there">for more info, please connect with me</string>
+    <string name="friends">Friends</string>
+    <string name="no_friends_yet">You don\'t have friends yet</string>
+    <string name="contacts">Contacts</string>
+    <string name="my_profile">My Profile</string>
+    <string name="submit">Submit</string>
 
 
 </resources>

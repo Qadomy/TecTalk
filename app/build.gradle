@@ -94,6 +94,8 @@ dependencies {
     //image zoom
     implementation 'com.github.stfalcon:stfalcon-imageviewer:1.0.1'
 
+    //circle image
+    implementation 'com.mikhaellopez:circularimageview:4.1.1'
 
     //dexter
     implementation 'com.karumi:dexter:6.0.1'
