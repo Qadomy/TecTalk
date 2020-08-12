@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Timestamp
 import com.qadomy.tectalk.R
 import com.qadomy.tectalk.model.ChatParticipant
+import com.qadomy.tectalk.model.User
 import kotlinx.android.synthetic.main.issue_layout.view.*
 
 // Navigate to signup fragment
@@ -128,12 +129,14 @@ fun formatDate(textView: TextView, timestamp: Timestamp?) {
     textView.text = timestamp?.seconds?.let { DateUtils.getRelativeTimeSpanString(it * 1000) }
 }
 
+
 @BindingAdapter("setUnderlinedText")
 fun setUnderlinedText(textView: TextView, text: String) {
     val content = SpannableString(text)
     content.setSpan(UnderlineSpan(), 0, content.length, 0)
     textView.text = content
 }
+
 
 @BindingAdapter("setChatImage")
 fun setChatImage(imageView: ImageView, imageUri: String) {
@@ -147,6 +150,24 @@ fun setChatImage(imageView: ImageView, imageUri: String) {
         .into(imageView)
 
 }
+
+@BindingAdapter("setRoundImage")
+fun setRoundImage(imageView: ImageView, item: User) {
+    item.let {
+        val imageUri = it.profile_picture_url
+        Glide.with(imageView.context)
+            .load(imageUri)
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.anonymous_profile)
+                    .circleCrop()
+            )
+            .into(imageView)
+    }
+
+}
+
 
 @BindingAdapter("setDuration")
 fun setDuration(textView: TextView, timeInMillis: String?) {

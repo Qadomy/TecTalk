@@ -154,7 +154,6 @@ class HomeFragment : Fragment() {
 
                 })
 
-
         })
     }
 
@@ -255,6 +254,6 @@ class HomeFragment : Fragment() {
 
     companion object {
         private const val TAG = "HomeFragment"
-//        fun newInstance() = HomeFragment()
+        fun newInstance() = HomeFragment()
     }
 }

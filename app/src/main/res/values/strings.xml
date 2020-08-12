@@ -40,6 +40,7 @@
     <string name="type_a_message">Type a message</string>
 
     <string name="empty_message">Can\'t send empty message</string>
+    <string name="find_friends">Find Friends</string>
 
 
 </resources>

@@ -170,6 +170,6 @@ class LoginFragment : Fragment() {
 
     companion object {
         private const val TAG = "LoginFragment"
-//        fun newInstance() = LoginFragment()
+        fun newInstance() = LoginFragment()
     }
 }

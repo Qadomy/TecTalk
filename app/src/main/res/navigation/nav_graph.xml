@@ -73,10 +73,22 @@
         android:id="@+id/contactsFragment"
         android:name="com.qadomy.tectalk.fragments.contacts.ContactsFragment"
         android:label="contacts_fragment"
-        tools:layout="@layout/contacts_fragment" />
+        tools:layout="@layout/contacts_fragment">
+        <action
+            android:id="@+id/action_contactsFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_findUserFragment"
+            app:destination="@id/findUserFragment" />
+    </fragment>
     <fragment
         android:id="@+id/incomingRequestsFragment"
         android:name="com.qadomy.tectalk.fragments.incoming_requests.IncomingRequestsFragment"
         android:label="incoming_requests_fragment"
         tools:layout="@layout/incoming_requests_fragment" />
+    <fragment
+        android:id="@+id/findUserFragment"
+        android:name="com.qadomy.tectalk.fragments.find_user.FindUserFragment"
+        android:label="find_user_fragment"
+        tools:layout="@layout/find_user_fragment" />
 </navigation>

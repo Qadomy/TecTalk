@@ -629,7 +629,7 @@ class ChatFragment : Fragment() {
 
     companion object {
         private const val TAG = "ChatFragment"
-//        fun newInstance() = ChatFragment()
+        fun newInstance() = ChatFragment()
 
         const val SELECT_CHAT_IMAGE_REQUEST = 3
         const val CHOOSE_FILE_REQUEST = 4
