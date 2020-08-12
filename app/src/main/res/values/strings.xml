@@ -39,4 +39,7 @@
     <string name="attachments">attachments</string>
     <string name="type_a_message">Type a message</string>
 
+    <string name="empty_message">Can\'t send empty message</string>
+
+
 </resources>

@@ -1,6 +1,8 @@
 package com.qadomy.tectalk.binding
 
+import android.text.SpannableString
 import android.text.format.DateUtils
+import android.text.style.UnderlineSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,6 +11,7 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.Timestamp
 import com.qadomy.tectalk.R
 import com.qadomy.tectalk.model.ChatParticipant
 import kotlinx.android.synthetic.main.issue_layout.view.*
@@ -117,4 +120,50 @@ fun formatDateFromMap(textView: TextView, map: Map<String, Double>?) {
     val time = (map?.get("seconds"))
     if (time != null) textView.text = DateUtils.getRelativeTimeSpanString(time.toLong() * 1000)
 
+}
+
+
+@BindingAdapter("formatDate")
+fun formatDate(textView: TextView, timestamp: Timestamp?) {
+    textView.text = timestamp?.seconds?.let { DateUtils.getRelativeTimeSpanString(it * 1000) }
+}
+
+@BindingAdapter("setUnderlinedText")
+fun setUnderlinedText(textView: TextView, text: String) {
+    val content = SpannableString(text)
+    content.setSpan(UnderlineSpan(), 0, content.length, 0)
+    textView.text = content
+}
+
+@BindingAdapter("setChatImage")
+fun setChatImage(imageView: ImageView, imageUri: String) {
+    Glide.with(imageView.context)
+        .load(imageUri)
+        .apply(
+            RequestOptions()
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_poor_connection_black_24dp)
+        )
+        .into(imageView)
+
+}
+
+@BindingAdapter("setDuration")
+fun setDuration(textView: TextView, timeInMillis: String?) {
+
+    if (timeInMillis == null) return
+
+    val h = (timeInMillis.toInt().div(3600000))
+    val m = (timeInMillis.toInt().div(60000).rem(60))
+    val s = (timeInMillis.toInt().div(1000).rem(60))
+
+    val sp = when (h) {
+        0 -> {
+            StringBuilder().append(m).append(":").append(s)
+        }
+        else -> {
+            StringBuilder().append(h).append(":").append(m).append(":").append(s)
+        }
+    }
+    textView.text = sp
 }
