@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.qadomy.tectalk.R
 import com.qadomy.tectalk.databinding.FindUserFragmentBinding
 import com.qadomy.tectalk.utils.Common.CLICKED_USER
+import kotlinx.android.synthetic.main.activity_main.*
 
 class FindUserFragment : Fragment() {
 
@@ -43,6 +44,10 @@ class FindUserFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        // hide BottomNavigationView
+        activity?.navView?.visibility = View.GONE
+
 
         // init view model
         viewModel = ViewModelProvider(requireActivity()).get(FindUserViewModel::class.java)

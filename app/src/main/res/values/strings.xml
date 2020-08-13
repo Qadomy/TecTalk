@@ -56,6 +56,10 @@
     <string name="submit">Submit</string>
     <string name="no_users_to_add_yet">No Users to add yet.</string>
     <string name="search_for_friends">Search For Friends</string>
+    <string name="friend_request_not_sent">Connect</string>
+    <string name="cancel_request">Cancel Request</string>
+    <string name="delete_from_friends">Remove From Friends</string>
+    <string name="no_friends">User has no friends yet</string>
 
 
 </resources>

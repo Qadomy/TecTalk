@@ -19,6 +19,7 @@ import com.qadomy.tectalk.model.User
 import com.qadomy.tectalk.ui.main_activity.SharedViewModel
 import com.qadomy.tectalk.utils.Common.CLICKED_USER
 import com.qadomy.tectalk.utils.Common.LOGGED_USER
+import kotlinx.android.synthetic.main.activity_main.*
 
 class ContactsFragment : Fragment() {
 
@@ -50,6 +51,9 @@ class ContactsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        // hide BottomNavigationView
+        activity?.navView?.visibility = View.GONE
 
         // init view models
         viewModel = ViewModelProvider(requireActivity()).get(ContactsViewModel::class.java)
