@@ -133,10 +133,10 @@ class MainActivity : AppCompatActivity() {
                             .navigate(R.id.ARselfieFragment)
                     }
                 }
-                R.id.searchFragment -> {
-                    if (isValidDestination(R.id.searchFragment)) {
+                R.id.findUserFragment -> {
+                    if (isValidDestination(R.id.findUserFragment)) {
                         Navigation.findNavController(this, R.id.nav_host_fragment)
-                            .navigate(R.id.searchFragment)
+                            .navigate(R.id.findUserFragment)
                     }
                 }
                 R.id.profileFragment -> {

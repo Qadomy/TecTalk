@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.qadomy.tectalk.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class GroupFragment : Fragment() {
 
@@ -20,6 +21,10 @@ class GroupFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        // display BottomNavigationView
+        activity?.navView?.visibility = View.VISIBLE
+
         return inflater.inflate(R.layout.group_fragment, container, false)
     }
 

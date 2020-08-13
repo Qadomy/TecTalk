@@ -14,7 +14,7 @@
         android:icon="@drawable/ar_selfie_icon"
         android:title="@string/ar_selfie" />
     <item
-        android:id="@+id/searchFragment"
+        android:id="@+id/findUserFragment"
         android:icon="@drawable/search_icon"
         android:title="@string/search" />
     <item

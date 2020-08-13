@@ -45,9 +45,8 @@ class FindUserFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        // hide BottomNavigationView
-        activity?.navView?.visibility = View.GONE
-
+        // display BottomNavigationView
+        activity?.navView?.visibility = View.VISIBLE
 
         // init view model
         viewModel = ViewModelProvider(requireActivity()).get(FindUserViewModel::class.java)

@@ -53,11 +53,6 @@
             app:destination="@id/findUserFragment" />
     </fragment>
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.qadomy.tectalk.fragments.search.SearchFragment"
-        android:label="search_fragment"
-        tools:layout="@layout/search_fragment" />
-    <fragment
         android:id="@+id/groupFragment"
         android:name="com.qadomy.tectalk.fragments.home_group.GroupFragment"
         android:label="group_fragment"
