@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Timestamp
 import com.qadomy.tectalk.R
 import com.qadomy.tectalk.model.ChatParticipant
+import com.qadomy.tectalk.model.GroupName
 import com.qadomy.tectalk.model.User
 import kotlinx.android.synthetic.main.issue_layout.view.*
 
@@ -168,6 +169,20 @@ fun setRoundImage(imageView: ImageView, item: User) {
 
 }
 
+@BindingAdapter("setRoundImageFromGroupName")
+fun setRoundImageFromGroupName(imageView: ImageView, groupName: GroupName) {
+
+    Glide.with(imageView.context)
+        .load(groupName.imageurl)
+        .apply(
+            RequestOptions()
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.anonymous_profile)
+                .circleCrop()
+        )
+        .into(imageView)
+
+}
 
 @BindingAdapter("setDuration")
 fun setDuration(textView: TextView, timeInMillis: String?) {

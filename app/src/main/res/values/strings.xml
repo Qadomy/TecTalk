@@ -67,6 +67,9 @@
     <string name="error_while_loading">Error while loading incoming friend requests</string>
     <string name="add_to_your_friends">added to your friends</string>
     <string name="request_deleted">Request deleted</string>
+    <string name="no_chat_history">no_chat_history_yet_click_chat_button_to_start_chatting</string>
+    <string name="create_group">Create Group</string>
+    <string name="join_group_using_key">Join Group using Key</string>
 
 
 </resources>

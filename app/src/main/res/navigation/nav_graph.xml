@@ -56,7 +56,14 @@
         android:id="@+id/groupFragment"
         android:name="com.qadomy.tectalk.fragments.home_group.GroupFragment"
         android:label="group_fragment"
-        tools:layout="@layout/group_fragment" />
+        tools:layout="@layout/group_fragment">
+        <action
+            android:id="@+id/action_groupFragment_to_roomChatFragment"
+            app:destination="@id/roomChatFragment" />
+        <action
+            android:id="@+id/action_groupFragment_to_createGroupFragment"
+            app:destination="@id/createGroupFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.qadomy.tectalk.fragments.register.SignUpFragment"
@@ -102,4 +109,14 @@
         android:name="com.qadomy.tectalk.fragments.different_user_profile.DifferentUserProfileFragment"
         android:label="different_user_profile_fragment"
         tools:layout="@layout/different_user_profile_fragment" />
+    <fragment
+        android:id="@+id/roomChatFragment"
+        android:name="com.qadomy.tectalk.fragments.room_chat.RoomChatFragment"
+        android:label="room_chat_fragment"
+        tools:layout="@layout/room_chat_fragment" />
+    <fragment
+        android:id="@+id/createGroupFragment"
+        android:name="com.qadomy.tectalk.fragments.create_group.CreateGroupFragment"
+        android:label="create_group_fragment"
+        tools:layout="@layout/create_group_fragment" />
 </navigation>
