@@ -70,6 +70,10 @@
     <string name="no_chat_history">no_chat_history_yet_click_chat_button_to_start_chatting</string>
     <string name="create_group">Create Group</string>
     <string name="join_group_using_key">Join Group using Key</string>
+    <string name="group_name">Group Name</string>
+    <string name="description">Description</string>
+    <string name="new_group">New Group</string>
+    <string name="create_new_group">Create New Group</string>
 
 
 </resources>

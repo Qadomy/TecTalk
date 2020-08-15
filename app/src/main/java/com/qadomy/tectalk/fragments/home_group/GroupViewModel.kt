@@ -38,7 +38,7 @@ class GroupViewModel : ViewModel() {
 
         val loggedUserId = loggedUser.uid.toString()
 
-        val query: Query = FireStoreUtil.firestoreInstance.collection("messages")
+        val query: Query = FireStoreUtil.firestoreInstance.collection("groups")
             .whereArrayContains("chat_members_in_group", loggedUserId)
 
         query.addSnapshotListener { querySnapshot, firebaseFireStoreException ->
