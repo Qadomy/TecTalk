@@ -19,6 +19,7 @@
         tools:ignore="RtlHardcoded" />
 
     <Button
+
         android:id="@+id/sendPictureButton"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -27,7 +28,7 @@
         android:backgroundTint="@color/percianBlue"
         android:text="@string/send_picture"
         android:textAllCaps="true"
-        android:textColor="@color/white"
+        android:textColor="@color/blue"
         android:textSize="18sp" />
 
     <Button
@@ -40,7 +41,7 @@
         android:backgroundTint="@color/percianBlue"
         android:text="@string/send_file"
         android:textAllCaps="true"
-        android:textColor="@color/white"
+        android:textColor="@color/blue"
         android:textSize="18sp" />
 
 

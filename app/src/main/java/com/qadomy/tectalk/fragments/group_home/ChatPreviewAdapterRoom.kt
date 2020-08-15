@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.fragments.home_group
+package com.qadomy.tectalk.fragments.group_home
 
 import android.graphics.Color
 import android.graphics.Typeface

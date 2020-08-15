@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.fragments.create_group
+package com.qadomy.tectalk.fragments.group_create_new
 
 import android.util.Log.d
 import androidx.lifecycle.MutableLiveData

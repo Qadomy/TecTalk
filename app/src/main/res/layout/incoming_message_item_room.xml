@@ -11,54 +11,72 @@
 
         <variable
             name="clickListener"
-            type="com.qadomy.tectalk.adapter.MessageClickListener" />
+            type="com.qadomy.tectalk.fragments.group_chat.MessageClickListener" />
 
         <variable
             name="position"
             type="Integer" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:onClick="@{() -> clickListener.onMessageClick(position,message)}">
+        android:layout_marginEnd="100dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@drawable/sent_bubble"
-            android:padding="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/incoming_bubble"
+            android:onClick="@{() -> clickListener.onMessageClick(position,message)}"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <TextView
-                android:id="@+id/progressbar"
+                android:id="@+id/text_message_received"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:gravity="start"
                 android:lineSpacingExtra="2dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="4dp"
-                android:paddingRight="8dp"
+                android:paddingStart="20dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="10dp"
                 android:paddingBottom="10dp"
                 android:text="@{message.text}"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/dateTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameOfUser"
+                tools:text="Hi, How are you?" />
+
+            <TextView
+                android:id="@+id/tvNameOfUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:lineSpacingExtra="2dp"
+                android:paddingStart="20dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="4dp"
+                android:text="@{message.senderName}"
+                android:textAllCaps="true"
+                android:textColor="@color/blue"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="hasfasihasfasihasddweddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfasi" />
+                tools:text="Dipesh Kafle" />
 
             <TextView
                 android:id="@+id/dateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="4dp"
                 android:gravity="end"
                 app:formatDate="@{message.createdAt}"
@@ -66,8 +84,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/progressbar"
+                app:layout_constraintTop_toBottomOf="@+id/text_message_received"
                 tools:text="14:16" />
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/dateTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dateTextView" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

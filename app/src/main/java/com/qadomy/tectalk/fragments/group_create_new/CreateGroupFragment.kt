@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.fragments.create_group
+package com.qadomy.tectalk.fragments.group_create_new
 
 import android.content.Context
 import android.content.SharedPreferences

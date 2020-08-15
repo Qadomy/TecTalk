@@ -54,15 +54,18 @@
     </fragment>
     <fragment
         android:id="@+id/groupFragment"
-        android:name="com.qadomy.tectalk.fragments.home_group.GroupFragment"
+        android:name="com.qadomy.tectalk.fragments.group_home.GroupFragment"
         android:label="group_fragment"
         tools:layout="@layout/group_fragment">
         <action
-            android:id="@+id/action_groupFragment_to_roomChatFragment"
-            app:destination="@id/roomChatFragment" />
-        <action
             android:id="@+id/action_groupFragment_to_createGroupFragment"
             app:destination="@id/createGroupFragment" />
+        <action
+            android:id="@+id/action_groupFragment_to_differentUserProfileFragment"
+            app:destination="@id/differentUserProfileFragment" />
+        <action
+            android:id="@+id/action_groupFragment_to_groupChatFragment"
+            app:destination="@id/groupChatFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -110,13 +113,30 @@
         android:label="different_user_profile_fragment"
         tools:layout="@layout/different_user_profile_fragment" />
     <fragment
-        android:id="@+id/roomChatFragment"
-        android:name="com.qadomy.tectalk.fragments.room_chat.RoomChatFragment"
-        android:label="room_chat_fragment"
-        tools:layout="@layout/room_chat_fragment" />
-    <fragment
         android:id="@+id/createGroupFragment"
-        android:name="com.qadomy.tectalk.fragments.create_group.CreateGroupFragment"
+        android:name="com.qadomy.tectalk.fragments.group_create_new.CreateGroupFragment"
         android:label="create_group_fragment"
         tools:layout="@layout/create_group_fragment" />
+    <fragment
+        android:id="@+id/groupChatFragment"
+        android:name="com.qadomy.tectalk.fragments.group_chat.GroupChatFragment"
+        android:label="group_chat_fragment"
+        tools:layout="@layout/group_chat_fragment">
+        <action
+            android:id="@+id/action_groupChatFragment_to_groupAddMembersFragment"
+            app:destination="@id/groupAddMembersFragment" />
+        <action
+            android:id="@+id/action_groupChatFragment_to_groupInfoFragment"
+            app:destination="@id/groupInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupAddMembersFragment"
+        android:name="com.qadomy.tectalk.fragments.group_add_members.GroupAddMembersFragment"
+        android:label="group_add_members_fragment"
+        tools:layout="@layout/group_add_members_fragment" />
+    <fragment
+        android:id="@+id/groupInfoFragment"
+        android:name="com.qadomy.tectalk.fragments.group_info.GroupInfoFragment"
+        android:label="group_info_fragment"
+        tools:layout="@layout/group_info_fragment" />
 </navigation>

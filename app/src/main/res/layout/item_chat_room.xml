@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.qadomy.tectalk.fragments.home_group.ClickListener" />
+            type="com.qadomy.tectalk.fragments.group_home.ClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

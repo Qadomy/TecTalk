@@ -7,11 +7,11 @@
 
         <variable
             name="message"
-            type="com.qadomy.tectalk.model.TextMessage" />
+            type="com.qadomy.tectalk.model.ImageMessage" />
 
         <variable
             name="clickListener"
-            type="com.qadomy.tectalk.adapter.MessageClickListener" />
+            type="com.qadomy.tectalk.fragments.group_chat.MessageClickListener" />
 
         <variable
             name="position"
@@ -21,53 +21,62 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:onClick="@{() -> clickListener.onMessageClick(position,message)}">
+        android:layout_marginEnd="100dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@drawable/sent_bubble"
-            android:padding="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/incoming_bubble"
+            android:onClick="@{() -> clickListener.onMessageClick(position,message)}"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+
+            <ImageView
                 android:id="@+id/progressbar"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:adjustViewBounds="true"
                 android:gravity="start"
-                android:lineSpacingExtra="2dp"
                 android:paddingLeft="8dp"
                 android:paddingTop="4dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="10dp"
-                android:text="@{message.text}"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/dateTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="hasfasihasfasihasddweddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfasi" />
+                app:setChatImage="@{message.uri}"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/anonymous_profile" />
+
 
             <TextView
                 android:id="@+id/dateTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="4dp"
                 android:gravity="end"
                 app:formatDate="@{message.createdAt}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/progressbar"
                 tools:text="14:16" />
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/dateTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dateTextView" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

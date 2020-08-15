@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.fragments.home_group
+package com.qadomy.tectalk.fragments.group_home
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -42,7 +42,7 @@ class GroupFragment : Fragment() {
             //navigate to chat with selected user on chat outer item click
             val clickedGroup = gson.toJson(groupName)
             findNavController().navigate(
-                R.id.action_groupFragment_to_roomChatFragment, bundleOf(
+                R.id.action_groupFragment_to_groupChatFragment, bundleOf(
                     CLICKED_GROUP to clickedGroup
                 )
             )
