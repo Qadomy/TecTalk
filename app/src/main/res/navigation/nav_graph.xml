@@ -138,5 +138,9 @@
         android:id="@+id/groupInfoFragment"
         android:name="com.qadomy.tectalk.fragments.group_info.GroupInfoFragment"
         android:label="group_info_fragment"
-        tools:layout="@layout/group_info_fragment" />
+        tools:layout="@layout/group_info_fragment">
+        <action
+            android:id="@+id/action_groupInfoFragment_to_differentUserProfileFragment"
+            app:destination="@id/differentUserProfileFragment" />
+    </fragment>
 </navigation>
