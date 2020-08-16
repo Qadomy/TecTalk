@@ -16,6 +16,7 @@ import com.qadomy.tectalk.R.drawable.ic_play_arrow_black_24dp
 import com.qadomy.tectalk.R.drawable.ic_stop_black_24dp
 import com.qadomy.tectalk.databinding.*
 import com.qadomy.tectalk.model.*
+import com.qadomy.tectalk.utils.AuthUtil
 import com.qadomy.tectalk.utils.event_buses.UpdateRecycleItemEvent
 import org.greenrobot.eventbus.EventBus
 import java.io.IOException
@@ -102,6 +103,46 @@ class ChatAdapter(private val context: Context?, private val clickListener: Mess
             }
             else -> throw IllegalArgumentException("Invalid ViewHolder type")
         }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+
+        val currentMessage = getItem(position)
+
+        when {
+            currentMessage.from == AuthUtil.getAuthId() && currentMessage.type == 0.0 -> {
+                return TYPE_SENT_MESSAGE
+            }
+            currentMessage.from != AuthUtil.getAuthId() && currentMessage.type == 0.0 -> {
+                return TYPE_RECEIVED_MESSAGE
+            }
+            currentMessage.from == AuthUtil.getAuthId() && currentMessage.type == 1.0 -> {
+                return TYPE_SENT_IMAGE_MESSAGE
+            }
+            currentMessage.from != AuthUtil.getAuthId() && currentMessage.type == 1.0 -> {
+                return TYPE_RECEIVED_IMAGE_MESSAGE
+            }
+            currentMessage.from == AuthUtil.getAuthId() && currentMessage.type == 2.0 -> {
+                return TYPE_SENT_FILE_MESSAGE
+            }
+            currentMessage.from != AuthUtil.getAuthId() && currentMessage.type == 2.0 -> {
+                return TYPE_RECEIVED_FILE_MESSAGE
+            }
+            currentMessage.from == AuthUtil.getAuthId() && currentMessage.type == 3.0 -> {
+                return TYPE_SENT_RECORD
+            }
+            currentMessage.from != AuthUtil.getAuthId() && currentMessage.type == 3.0 -> {
+                return TYPE_RECEIVED_RECORD
+            }
+            currentMessage.type == 8.0 -> {
+                return TYPE_SENT_RECORD_PLACEHOLDER
+            }
+            else -> {
+
+                throw IllegalArgumentException("Invalid ItemViewType")
+            }
+        }
+
     }
 
 

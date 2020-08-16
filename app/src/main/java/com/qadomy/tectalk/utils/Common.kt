@@ -7,5 +7,9 @@ object Common {
     const val CLICKED_USER = "clickedUser"
     const val CLICKED_GROUP = "clicked_group"
     const val FRIENDS = "friends"
+    const val MESSAGES_COLLECTIONS = "messages"
+    const val GROUPS_COLLECTIONS = "groups"
+    const val USERS_COLLECTIONS = "users"
+    const val CHAT_MEMBER_IN_GROUP = "chat_members_in_group"
 
 }

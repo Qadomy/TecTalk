@@ -41,7 +41,7 @@
 
     <string name="empty_message">Can\'t send empty message</string>
     <string name="find_friends">Find Friends</string>
-    <string name="select_profile_picture">Select Picture</string>
+    <string name="select_profile_picture">Select Profile Picture</string>
     <string name="take_new_profile_picture">Take new picture</string>
     <string name="uploading">uploading..</string>
     <string name="edit_profile">edit profile</string>
@@ -82,6 +82,10 @@
     <string name="grant">Grant</string>
     <string name="info">Info</string>
     <string name="add_members">Add Members</string>
+    <string name="finished_recording">Finished recording</string>
+    <string name="recording">Recording</string>
+    <string name="no_suitable_file_on_this_device">No suitable file manager was found on this device</string>
+    <string name="select_picture">Select Picture</string>
 
 
 </resources>
