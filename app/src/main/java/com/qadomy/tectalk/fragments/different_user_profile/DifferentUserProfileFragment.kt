@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.qadomy.tectalk.R
-import com.qadomy.tectalk.adapter.FriendsAdapter
+import com.qadomy.tectalk.fragments.profile.FriendsAdapter
 import com.qadomy.tectalk.databinding.DifferentUserProfileFragmentBinding
 import com.qadomy.tectalk.model.User
 import com.qadomy.tectalk.ui.main_activity.SharedViewModel
@@ -26,7 +26,8 @@ class DifferentUserProfileFragment : Fragment() {
 
     // adapter
     private val adapter: FriendsAdapter by lazy {
-        FriendsAdapter(object : FriendsAdapter.ItemClickCallback {
+        FriendsAdapter(object :
+            FriendsAdapter.ItemClickCallback {
             override fun onItemClicked(user: User) {
                 Toast.makeText(requireContext(), "${user.username} clicked", Toast.LENGTH_SHORT)
                     .show()

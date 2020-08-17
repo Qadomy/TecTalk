@@ -23,7 +23,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.gson.Gson
 import com.qadomy.tectalk.R
-import com.qadomy.tectalk.adapter.FriendsAdapter
 import com.qadomy.tectalk.databinding.ProfileFragmentBinding
 import com.qadomy.tectalk.model.User
 import com.qadomy.tectalk.ui.main_activity.SharedViewModel

@@ -1,4 +1,4 @@
-package com.qadomy.tectalk.adapter
+package com.qadomy.tectalk.fragments.profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
