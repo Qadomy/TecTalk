@@ -46,6 +46,7 @@ class GroupAddMembersViewModel : ViewModel() {
                     ?.addOnSuccessListener {
                         // bioLoadState.value = LoadState.SUCCESS
                         Log.d(TAG, "added group in user successfully")
+                        Log.d(TAG, "updateUserProfileForGroups: $it")
                     }
                     ?.addOnFailureListener {
                         // bioLoadState.value = LoadState.FAILURE

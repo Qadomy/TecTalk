@@ -10,7 +10,7 @@
         android:icon="@drawable/groups_icon"
         android:title="@string/groups" />
     <item
-        android:id="@+id/ARselfieFragment"
+        android:id="@+id/ArSelfieHome"
         android:icon="@drawable/ar_selfie_icon"
         android:title="@string/ar_selfie" />
     <item

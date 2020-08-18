@@ -109,6 +109,7 @@ class GroupAddMembersFragment : Fragment() {
 
 
         btAddFreindsToGroup.setOnClickListener {
+            // get all selected members
             val newMembersIds = ArrayList<String>()
             for (i in selectedItems!!) {
                 newMembersIds.add(i.uid.toString())
@@ -122,9 +123,6 @@ class GroupAddMembersFragment : Fragment() {
             clickedGroup.chat_members_in_group = newMembersIds
             viewModel.updateUserProfileForGroups(clickedGroup.group_name.toString(), newMembersIds)
             this.findNavController().popBackStack()
-            //////////////////////  DONT FORGERT TO REMOVE THIS CODE AFTER IMPLEMENTING REFRESH OPTION ////////////////
-            this.findNavController().popBackStack()
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
     }
 

@@ -18,10 +18,20 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/ARselfieFragment"
-        android:name="com.qadomy.tectalk.fragments.ar_selfie_fragment.ARselfieFragment"
-        android:label="a_rselfie_fragment"
-        tools:layout="@layout/a_rselfie_fragment" />
+        android:id="@+id/ArSelfieHome"
+        android:name="com.qadomy.tectalk.fragments.ar_selfie_home.ArSelfieHome"
+        android:label="ArSelfieHome"
+        tools:layout="@layout/ar_selfie_home">
+        <action
+            android:id="@+id/action_ArSelfieHome_to_selfieFragment"
+            app:destination="@id/selfieFragment" />
+        <action
+            android:id="@+id/action_ArSelfieHome_to_arFloorFragment"
+            app:destination="@id/arFloorFragment" />
+        <action
+            android:id="@+id/action_ArSelfieHome_to_arSelfieFragment"
+            app:destination="@id/arSelfieFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.qadomy.tectalk.fragments.home_fragment.HomeFragment"
@@ -143,4 +153,19 @@
             android:id="@+id/action_groupInfoFragment_to_differentUserProfileFragment"
             app:destination="@id/differentUserProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/arFloorFragment"
+        android:name="com.qadomy.tectalk.fragments.ar_selfie_home.ar_floor_fragment.ArFloorFragment"
+        android:label="fragment_ar_floor"
+        tools:layout="@layout/fragment_ar_floor" />
+    <fragment
+        android:id="@+id/arSelfieFragment"
+        android:name="com.qadomy.tectalk.fragments.ar_selfie_home.ar_selfie_fragment.ArSelfieFragment"
+        android:label="fragment_ar_selfie"
+        tools:layout="@layout/fragment_ar_selfie" />
+    <fragment
+        android:id="@+id/selfieFragment"
+        android:name="com.qadomy.tectalk.fragments.ar_selfie_home.selfie_fragment.SelfieFragment"
+        android:label="fragment_selfie"
+        tools:layout="@layout/fragment_selfie" />
 </navigation>
